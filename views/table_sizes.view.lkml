@@ -21,7 +21,6 @@ view: table_sizes {
   }
 
   dimension: size {
-    hidden: yes
     type: number
     sql: ${TABLE}.size ;;
   }
@@ -30,6 +29,7 @@ view: table_sizes {
     type: string
     sql: ${TABLE}."table" ;;
   }
+
   measure: sum {
     type: sum
     sql: ${size} ;;
