@@ -1,5 +1,5 @@
 view: table_sizes {
-  sql_table_name: scratch.table_sizes ;;
+  sql_table_name: maintenance.table_sizes ;;
 
   dimension_group: date {
     type: time
