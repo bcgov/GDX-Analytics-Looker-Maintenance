@@ -13,5 +13,3 @@ persist_with: table_sizes_default_datagroup
 explore: table_sizes {}
 
 # explore: events_new {}
-
-# test
