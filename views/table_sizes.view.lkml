@@ -30,6 +30,11 @@ view: table_sizes {
     sql: ${TABLE}."table" ;;
   }
 
+  dimension: rows {
+    type: number
+    sql: ${TABLE}."tbl_rows" ;;
+  }
+
   measure: sum {
     type: sum
     sql: ${size} ;;
