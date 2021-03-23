@@ -15,6 +15,11 @@ view: table_sizes {
     sql: ${TABLE}.date ;;
   }
 
+  dimension: table_rows {
+    type: number
+    sql:  ${TABLE}.tbl_rows ;;
+  }
+
   dimension: schema {
     type: string
     sql: ${TABLE}.schema ;;
@@ -30,14 +35,24 @@ view: table_sizes {
     sql: ${TABLE}."table" ;;
   }
 
-  measure: sum {
+  measure: size_sum {
     type: sum
     sql: ${size} ;;
   }
 
-  measure: average {
+  measure: size_average {
     type: average
     sql: ${size} ;;
+  }
+
+  measure: table_rows_sum {
+    type: sum
+    sql: ${table_rows} ;;
+  }
+
+  measure: table_rows_average {
+    type: average
+    sql: ${table_rows} ;;
   }
 
   measure: count {
