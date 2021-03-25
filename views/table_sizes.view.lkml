@@ -10,7 +10,8 @@ view: table_sizes {
       week,
       month,
       quarter,
-      year
+      year,
+      hour_of_day
     ]
     sql: ${TABLE}.date ;;
   }
@@ -23,6 +24,11 @@ view: table_sizes {
   dimension: schema {
     type: string
     sql: ${TABLE}.schema ;;
+  }
+
+  dimension: table_with_schema{
+    type:  string
+    sql: CONCAT(${schema}, CONCAT('.',${table})) ;;
   }
 
   dimension: size {
