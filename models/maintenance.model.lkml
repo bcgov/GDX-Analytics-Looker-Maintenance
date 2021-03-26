@@ -1,4 +1,4 @@
-connection: "redshift_utc_query_utc_maintenance"
+connection: "redshift_pacific_time"
 
 # include all the views
 include: "/views/**/*.view"
