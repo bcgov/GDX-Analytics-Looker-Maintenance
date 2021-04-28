@@ -16,24 +16,11 @@ view: table_sizes {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: table_rows {
-    type: number
-    sql:  ${TABLE}.tbl_rows ;;
-  }
+  ## Table Identifiers
 
   dimension: schema {
     type: string
     sql: ${TABLE}.schema ;;
-  }
-
-  dimension: table_with_schema{
-    type:  string
-    sql: CONCAT(${schema}, CONCAT('.',${table})) ;;
-  }
-
-  dimension: size {
-    type: number
-    sql: ${TABLE}.size ;;
   }
 
   dimension: table {
@@ -41,28 +28,81 @@ view: table_sizes {
     sql: ${TABLE}."table" ;;
   }
 
-  measure: size_sum {
-    type: sum
-    sql: ${size} ;;
+  dimension: table_with_schema{
+    type:  string
+    sql: CONCAT(${schema}, CONCAT('.',${table})) ;;
   }
 
-  measure: size_average {
-    type: average
-    sql: ${size} ;;
+  ## Point-in-time table attributes (size on disk in MB, and rows in table)
+
+  dimension: size {
+    description: "Size of the table in MB at this point in time. Use measures to aggregate values over tables or time ranges."
+    type: number
+    sql: ${TABLE}.size ;;
   }
 
-  measure: table_rows_sum {
-    type: sum
-    sql: ${table_rows} ;;
+  dimension: table_rows {
+    description: "Number of rows in the table at this point in time. Use measures to aggregate values over tables or time ranges."
+    type: number
+    sql:  ${TABLE}.tbl_rows ;;
   }
 
-  measure: table_rows_average {
-    type: average
-    sql: ${table_rows} ;;
-  }
+  # MEASUREMENTS
 
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  ## Measuring the size of the tables
+
+  measure: size_average {
+    group_label: "Size (MB) measures"
+    type: average
+    sql: ${size} ;;
+  }
+
+  measure: size_max {
+    group_label: "Size (MB) measures"
+    type: max
+    sql: ${size} ;;
+  }
+
+  measure: size_min {
+    group_label: "Size (MB) measures"
+    type: min
+    sql: ${size} ;;
+  }
+
+  measure: size_sum {
+    group_label: "Size (MB) measures"
+    type: sum
+    sql: ${size} ;;
+  }
+
+  ## Measuring the rows in the tables
+
+  measure: table_rows_average {
+    group_label: "Table row measures"
+    type: average
+    sql: ${table_rows} ;;
+  }
+
+  measure: table_rows_max {
+    group_label: "Table row measures"
+    type: max
+    sql: ${table_rows} ;;
+  }
+
+  measure: table_rows_min {
+    group_label: "Table row measures"
+    type: min
+    sql: ${table_rows} ;;
+  }
+
+  measure: table_rows_sum {
+    group_label: "Table row measures"
+    type: sum
+    sql: ${table_rows} ;;
   }
 }
