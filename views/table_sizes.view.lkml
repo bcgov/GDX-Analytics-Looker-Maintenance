@@ -11,7 +11,10 @@ view: table_sizes {
       month,
       quarter,
       year,
-      hour_of_day
+      hour_of_day,
+      minute,
+      minute2,
+      minute5
     ]
     sql: ${TABLE}.date ;;
   }
