@@ -6,15 +6,18 @@ view: table_sizes {
     timeframes: [
       raw,
       time,
+      minute,
+      minute10,
+      time_of_day,
+      hour_of_day,
+      hour,
       date,
+      day_of_month,
+      day_of_week,
       week,
       month,
       quarter,
-      year,
-      hour_of_day,
-      minute,
-      minute2,
-      minute5
+      year
     ]
     sql: ${TABLE}.date ;;
   }
