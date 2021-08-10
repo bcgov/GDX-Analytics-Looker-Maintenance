@@ -9,3 +9,5 @@ datagroup: table_sizes_default_datagroup {
 persist_with: table_sizes_default_datagroup
 
 explore: table_sizes {}
+explore: daily_max_table_size {}
+explore: daily_cluster_size {}
