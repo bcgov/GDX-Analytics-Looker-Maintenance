@@ -5,7 +5,7 @@ view: daily_max_table_size {
             ts.date AS date,
             ts.schema AS schema,
             MAX(ts.size) OVER (
-              PARTITION BY date_part('day', date), tablename
+              PARTITION BY DATE_PART('day', date), tablename
             ) as size
           FROM maintenance.table_sizes AS ts
           GROUP BY tablename, date, schema, size ;;
