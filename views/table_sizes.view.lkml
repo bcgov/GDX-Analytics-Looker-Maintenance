@@ -53,6 +53,18 @@ view: table_sizes {
     sql:  ${TABLE}.tbl_rows ;;
   }
 
+  dimension: estimated_visible_rows {
+    description: "The estimated rows in the table. This value does not include rows marked for deletion."
+    type: number
+    sql: ${TABLE}.estimated_visible_rows ;;
+  }
+
+  dimension: tombstoned_rows {
+    description: "The number of rows in the table minus the estimated visible rows."
+    type: number
+    sql: ${TABLE}.tombstoned_rows ;;
+  }
+
   # MEASUREMENTS
 
   measure: count {
@@ -110,5 +122,57 @@ view: table_sizes {
     group_label: "Table row measures"
     type: sum
     sql: ${table_rows} ;;
+  }
+
+  ## Estimated visible rows measures
+
+  measure: estimated_visible_rows_average {
+    group_label: "Table row measures"
+    type: average
+    sql: ${estimated_visible_rows} ;;
+  }
+
+  measure: estimated_visible_rows_max {
+    group_label: "Table row measures"
+    type: max
+    sql: ${estimated_visible_rows} ;;
+  }
+
+  measure: estimated_visible_rows_min {
+    group_label: "Table row measures"
+    type: min
+    sql: ${estimated_visible_rows} ;;
+  }
+
+  measure: estimated_visible_rows_sum {
+    group_label: "Table row measures"
+    type: sum
+    sql: ${estimated_visible_rows} ;;
+  }
+
+  ## Tombstoned rows measures
+
+  measure: tombstoned_rows_average {
+    group_label: "Table row measures"
+    type: average
+    sql: ${tombstoned_rows} ;;
+  }
+
+  measure: tombstoned_rows_max {
+    group_label: "Table row measures"
+    type: max
+    sql: ${tombstoned_rows} ;;
+  }
+
+  measure: tombstoned_rows_min {
+    group_label: "Table row measures"
+    type: min
+    sql: ${tombstoned_rows} ;;
+  }
+
+  measure: tombstoned_rows_sum {
+    group_label: "Table row measures"
+    type: sum
+    sql: ${tombstoned_rows} ;;
   }
 }
